@@ -1,0 +1,117 @@
+
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  .form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 500px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    margin-bottom: 5px;
+    margin-top: 15px;
+  }
+
+  input {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+
+  button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+</style>
+<h2>MANAGE MEMBER</h2>
+<div class="table-wrapper">
+  <table class="fl-table" >
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Username</th>
+      <th>NIC</th>
+      <th>Age</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr  *ngFor="let item of data">
+      <td>{{ item.name }}</td>
+      <td>{{ item.username }}</td>
+      <td>{{ item.nic }}</td>
+      <td>{{ item.age }}</td>
+      <td>
+        <button class="btn btn-submit me-2"  data-bs-toggle="modal"
+                data-bs-target="#exampleModalCenter" (click)="updatePopup()">Update</button>
+        <button class="btn btn-cancel me-2" (click)="deleteMember(item.nic)">Delete</button>
+      </td>
+    </tr>
+    <tbody>
+  </table>
+</div>
+
+<ng-template #updateMemberPopup let-modal style="background: #0d6efd">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h4 class="modal-title">Update View</h4>
+      <button type="button" class="close" (click)="closePopup()">
+        <span aria-hidden="true">x</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="row">
+          <div class="form-container">
+            <form action="" method="post">
+              <label for="name">Name:</label>
+              <input type="text" id="name" name="name" required>
+
+              <label for="email">Email:</label>
+              <input type="email" id="email" name="email" required>
+
+              <label for="password">Password:</label>
+              <input type="password" id="password" name="password" required>
+
+              <label for="age">Age:</label>
+              <input type="number" id="age" name="age" required>
+            </form>
+          </div>
+        </div>
+        <br>
+        <button type="submit" class="btn btn-primary">Update</button>
+      </form>
+    </div>
+  </div>
+</ng-template>
+
+
+
+
+

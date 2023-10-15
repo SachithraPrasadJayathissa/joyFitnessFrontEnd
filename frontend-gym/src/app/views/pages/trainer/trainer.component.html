@@ -1,0 +1,58 @@
+<div class="page-wrapper">
+    <div class="content">
+        <div class="page-header">
+            <div class="page-title">
+                <h2>ADD NEW TRAINER</h2>
+                <h4>CREATE NEW TRAINER</h4>
+            </div>
+        </div>
+        <!-- /add -->
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" id="name" [(ngModel)]="trainer.name" >
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" id="username1" [(ngModel)]="trainer.username">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" id="password1" [(ngModel)]="trainer.password">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Age</label>
+                            <input type="text" id="age"[(ngModel)]="trainer.age">
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="text" id="phone"[(ngModel)]="trainer.phone">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-6 col-12">
+                        <div class="form-group">
+                            <label>NIC</label>
+                            <input type="text" id="nic"[(ngModel)]="trainer.nic">
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12">
+                        <button (click)="saveTrainer()" class="btn btn-submit me-2">Submit</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
