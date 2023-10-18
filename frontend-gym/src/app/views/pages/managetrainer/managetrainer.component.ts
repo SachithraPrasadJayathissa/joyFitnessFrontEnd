@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {MemberModel} from "../../../model/member.model";
 import {MemberService} from "../../../service/member.service";
 import {TrainerModel} from "../../../model/trainer.model";
 import {TraineerService} from "../../../service/traineer.service";
 import Swal from "sweetalert2";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-managetrainer',
@@ -13,12 +14,12 @@ import Swal from "sweetalert2";
 export class ManagetrainerComponent {
 
   data?: TrainerModel[];
-
+  modelRef: any;
   trainer: TrainerModel = {
     nic: ''
   };
-
-  constructor(private trainerService: TraineerService) {
+  @ViewChild('updateTrainerPopup') updateTrainerPopup!: ElementRef;
+  constructor(private trainerService: TraineerService,private modal: NgbModal) {
   }
 
   ngOnInit(): void {
@@ -48,7 +49,7 @@ export class ManagetrainerComponent {
           if (successMessage === 'Success') {
             Swal.fire({
               title: 'Good Job',
-              text: 'Success Deleted',
+              text: 'Success Trainer Updated',
               icon: 'success',
               confirmButtonText: 'OK'
             }).then((result) => {
@@ -85,5 +86,10 @@ export class ManagetrainerComponent {
         }
       });
   }
-
+  updatePopup(){
+    this.modelRef = this.modal.open(this.updateTrainerPopup, {centered: true})
+  }
+  closePopup(){
+    this.modelRef.close();
+  }
 }

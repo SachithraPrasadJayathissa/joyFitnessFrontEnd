@@ -58,7 +58,7 @@ public schedule_ex: any;
           .subscribe({
             next: (res) => {
               const successMessage = res['message_status'];
-              if (successMessage === 'success') {
+              if (successMessage === 'Success') {
                 this.submitted = true;
                 Swal.fire({
                   title: 'Good Job',
@@ -71,7 +71,6 @@ public schedule_ex: any;
                   }
                 });
               } else {
-                console.error('Not saved');
                 Swal.fire({
                   title: 'Error',
                   text: 'User Already Existing',

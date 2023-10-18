@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {LoginService} from "../../../service/login.service";
 import {LoginModel} from "../../../model/login.models";
 import {Router} from "@angular/router";
+import Swal from "sweetalert2";
 
 const baseUrl = "http://localhost:4200/dashboard";
 @Component({
@@ -14,9 +15,6 @@ export class LoginComponent {
     name: '',
     password: ''
   };
-
-
-
   constructor(private router: Router,private loginService: LoginService) {
   }
 
@@ -33,16 +31,37 @@ export class LoginComponent {
             sessionStorage.setItem('jwt_token' , res.token);
             sessionStorage.setItem('user_role' , res.role);
           }
-          console.log(res.role)
+
           if(res.role === 'ROLE_TRAINER'){
-            this.router.navigate(['/dashboard']);
-          }else if(res.role === 'ROLE_MEMBER'){
+
+            Swal.fire({
+              title: 'Successful Login',
+              text: 'Welcome Trainer!',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            }).then((result) => {
+
+              if (result.isConfirmed) {
+                this.router.navigate(['/dashboard']);
+              }
+            });
+
+          } else if(res.role === 'ROLE_MEMBER'){
             this.router.navigate(['/']);
           }
 
-
         },
-        error: (e) => console.error(e)
+        error: (e) => {
+          Swal.fire({
+            title: 'Login Failed',
+            text: 'Please check your username and password.',
+            icon: 'error',
+            confirmButtonText: 'Try Again'
+          }).then((result) => {
+            location.reload();
+          });
+        }
       });
+
   }
 }

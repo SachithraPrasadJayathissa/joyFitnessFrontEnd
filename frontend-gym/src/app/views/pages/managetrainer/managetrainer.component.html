@@ -1,11 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Colorful Table</title>
-</head>
-<body>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  .form-container {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 500px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  label {
+    margin-bottom: 5px;
+    margin-top: 15px;
+  }
+
+  input {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+
+  button {
+    background-color: #324960;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  button:hover {
+    background-color: #45a049;
+  }
+</style>
 
 <h2>MANAGE TRAINERS</h2>
 <div class="table-wrapper">
@@ -26,13 +68,42 @@
       <td>{{ item.nic }}</td>
       <td>{{ item.age }}</td>
       <td>
-        <button class="btn btn-submit me-2">Update</button>
+        <button class="btn btn-submit me-2" (click)="updatePopup()">Update</button>
         <button class="btn btn-cancel me-2" (click)="deleteTrainer(item.nic)">Delete</button>
       </td>
-
     </tr>
     <tbody>
   </table>
+  <ng-template #updateTrainerPopup let-modal style="background: #0d6efd">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title">Update TRAINER</h2>
+        <button type="button" class="close" (click)="closePopup()">
+          <span aria-hidden="true">x</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="row">
+            <div class="form-container">
+              <form action="" method="post">
+                <label>Username</label>
+                <input type="text" id="username"required>
+
+                <label>Age</label>
+                <input  id="age"required>
+
+                <label> Phone</label>
+                <input id="phone"required>
+
+              </form>
+            </div>
+          </div>
+          <br>
+          <button type="submit">Update</button>
+        </form>
+      </div>
+    </div>
+  </ng-template>
 </div>
-</body>
-</html>
+

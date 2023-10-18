@@ -12,7 +12,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 export class SettingsComponent implements OnInit {
 
   data?: MemberModel[];
-modelRef: any;
+  modelRef: any;
   member: MemberModel = {
     nic: ''
   };

@@ -7,7 +7,7 @@ export const navbarData = [
   {
     routeLink: 'manage',
     icon: 'far fa-address-card',
-    label: 'Add Member'
+    label: 'View Workouts'
   },
   {
     routeLink: 'settings',

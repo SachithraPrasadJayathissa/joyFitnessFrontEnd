@@ -36,7 +36,7 @@
   }
 
   button {
-    background-color: #4CAF50;
+    background-color: #324960;
     color: white;
     padding: 10px;
     border: none;
@@ -80,7 +80,7 @@
 <ng-template #updateMemberPopup let-modal style="background: #0d6efd">
   <div class="modal-content">
     <div class="modal-header">
-      <h4 class="modal-title">Update View</h4>
+      <h2 class="modal-title">Update MEMBER</h2>
       <button type="button" class="close" (click)="closePopup()">
         <span aria-hidden="true">x</span>
       </button>
@@ -90,22 +90,53 @@
         <div class="row">
           <div class="form-container">
             <form action="" method="post">
-              <label for="name">Name:</label>
-              <input type="text" id="name" name="name" required>
+              <label>Age</label>
+              <input type="text" id="age"required>
 
-              <label for="email">Email:</label>
-              <input type="email" id="email" name="email" required>
+              <label>Gender</label>
+              <select class="form-select" id="gender">
+                <option></option>
+                <option>Male</option>
+                <option>Female</option>
+              </select>
 
-              <label for="password">Password:</label>
-              <input type="password" id="password" name="password" required>
+              <label>Phone</label>
+              <input  id="phone"required>
 
-              <label for="age">Age:</label>
-              <input type="number" id="age" name="age" required>
+              <label >Height</label>
+              <input id="height"required>
+
+              <label>Weight</label>
+              <input id="weight" required>
+
+              <label>BMI</label>
+              <input type="text" id="bmi"required>
+
+              <label>Fitness Goal</label>
+              <select class="form-select" id="goal">
+                <option></option>
+                <option>General Health</option>
+                <option>#</option>
+                <option>#</option>
+                <option>#</option>
+              </select>
+
+
+              <label>Workout Time(Minutes)</label>
+              <input  id="workout_Time"required>
+
+              <label >Workout Experieance(Years)</label>
+              <input id="Workout_Experieance"required>
+
+              <label>Workout Schedule</label>
+              <input id="Workout_Schedule" required>
             </form>
           </div>
         </div>
         <br>
-        <button type="submit" class="btn btn-primary">Update</button>
+        <button type="submit">Update</button>
+        <br>
+        <button type="submit">Update Schedule</button>
       </form>
     </div>
   </div>
