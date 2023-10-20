@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {MemberService} from "../../../service/member.service";
 import {MemberModel} from "../../../model/member.model";
 import Swal from 'sweetalert2';
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-manage',
@@ -28,8 +29,9 @@ public schedule_ex: any;
     };
 
     submitted = false;
+    isScheduleButtonDisabled = false;
 
-    constructor(private memberService: MemberService) {
+    constructor(private memberService: MemberService,private router: Router) {
     }
 
     ngOnInit() {
@@ -37,7 +39,7 @@ public schedule_ex: any;
     }
 
     saveMember(): void {
-        const data = {
+        const data:any = {
             name: this.member.name,
             username: this.member.username,
             password: this.member.password,
@@ -54,51 +56,77 @@ public schedule_ex: any;
             schedule: this.schedule_ex
         };
 
-        this.memberService.create(data)
-          .subscribe({
-            next: (res) => {
-              const successMessage = res['message_status'];
-              if (successMessage === 'Success') {
-                this.submitted = true;
+        for (const key in data) {
+            if (data[key] == null || data[key] === '') {
                 Swal.fire({
-                  title: 'Good Job',
-                  text: 'Success Added',
-                  icon: 'success',
-                  confirmButtonText: 'OK'
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    location.reload();
-                  }
+                    title: 'Error',
+                    text: 'All fields are required. Please fill out all fields.',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
                 });
-              } else {
-                Swal.fire({
-                  title: 'Error',
-                  text: 'User Already Existing',
-                  icon: 'error',
-                  confirmButtonText: 'OK'
-                }).then((result) => {
-                  if (result.isConfirmed) {
-                    location.reload();
-                  }
-                });
-              }
-            },
-            error: (e) => {
-              console.error(e);
-              Swal.fire({
-                title: 'Error',
-                text: 'An error occurred. Please try again later.',
-                icon: 'error',
-                confirmButtonText: 'OK'
-              }).then((result) => {
-                if (result.isConfirmed) {
-                  location.reload();
-                }
-              });
+                return; // Exit the function if validation fails
             }
-          });
+        }
+
+        this.memberService.create(data)
+            .subscribe({
+                next: (res) => {
+                    const successMessage = res['message_status'];
+                    if (successMessage === 'Success') {
+                        this.submitted = true;
+                        Swal.fire({
+                            title: 'Good Job',
+                            text: 'Success Added',
+                            icon: 'success',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    } else {
+                        Swal.fire({
+                            title: 'Error',
+                            text: 'User Already Existing',
+                            icon: 'error',
+                            confirmButtonText: 'OK'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        });
+                    }
+                },
+                error: (e) => {
+                    console.error(e);
+                    Swal.fire({
+                        title: 'Error',
+                        text: 'An error occurred. Please try again later.',
+                        icon: 'error',
+                        confirmButtonText: 'OK'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            location.reload();
+                        }
+                    });
+                }
+            });
+    }
+
+    showLoadingAlert() {
+        Swal.fire({
+            title: 'Loading...',
+            html: '<div class="spinner-border" role="status"><span class="sr-only">GENERATING A SCHEDULE...</span></div>',
+            showConfirmButton: false,
+            allowOutsideClick: false
+        });
+    }
+
+    closeAlert() {
+        Swal.close();
     }
     getScheduleAI(): void {
+        this.showLoadingAlert();
       const needData = {
         age: this.member.age,
         gender: this.member.gender,
@@ -115,11 +143,25 @@ public schedule_ex: any;
           next: (res) => {
             console.log(res);
             this.schedule_ex = res.scheduleValue;
+            this.closeAlert();
+            this.isScheduleButtonDisabled = true;
           },
           error: (err) => {
             console.error(err);
+            this.closeAlert();
           }
         });
 
      }
+    calculateBMI(): void {
+        if (this.member.height && this.member.weight) {
+            let heightInMeters = this.member.height / 100;
+            this.member.bmi = (this.member.weight / (heightInMeters ** 2)).toFixed(1);
+        }
+    }
+    navigateToDashboard(): void {
+        this.router.navigate(['/dashboard']);
+    }
+
+
 }

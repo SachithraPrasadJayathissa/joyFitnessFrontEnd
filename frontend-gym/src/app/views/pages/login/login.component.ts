@@ -47,7 +47,7 @@ export class LoginComponent {
             });
 
           } else if(res.role === 'ROLE_MEMBER'){
-            this.router.navigate(['/']);
+            this.router.navigate(['/nav-member/dashboard']);
           }
 
         },

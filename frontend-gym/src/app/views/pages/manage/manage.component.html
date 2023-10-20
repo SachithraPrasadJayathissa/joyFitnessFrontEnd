@@ -5,6 +5,9 @@
         <h2>ADD NEW MEMBER</h2>
         <h4>CREATE NEW GYM MEMBER</h4>
       </div>
+<!--      <div *ngIf="isLoading" class="spinner-container">-->
+<!--        <div class="spinner"></div>-->
+<!--      </div>-->
     </div>
     <!-- /add -->
     <div class="card">
@@ -30,9 +33,9 @@
               <label>Fitness Goal</label>
               <select class="form-select" id="goal"[(ngModel)]="member.fitness_goal">
                 <option>General Health</option>
-                <option>#</option>
-                <option>#</option>
-                <option>#</option>
+                <option>Weight Gain</option>
+                <option>Muscle Gain</option>
+                <option>Weight Loss</option>
               </select>
             </div>
           </div>
@@ -67,17 +70,16 @@
               <input type="text" id="nic"[(ngModel)]="member.nic">
             </div>
           </div>
-
           <div class="col-lg-3 col-sm-6 col-12">
             <div class="form-group">
               <label>Height</label>
-              <input type="text" id="height" [(ngModel)]="member.height" >
+              <input type="text" id="height" [(ngModel)]="member.height" (input)="calculateBMI()" >
             </div>
           </div>
           <div class="col-lg-3 col-sm-6 col-12">
             <div class="form-group">
               <label>Weight</label>
-              <input type="text" id="weight" [(ngModel)]="member.weight" >
+              <input type="text" id="weight" [(ngModel)]="member.weight" (input)="calculateBMI()" >
             </div>
           </div>
 
@@ -107,11 +109,10 @@
             </div>
           </div>
 
-
           <div class="col-lg-12">
             <button (click)="saveMember()" class="btn btn-submit me-2">Submit</button>
-            <button (click)="getScheduleAI()" class="btn btn-submit me-2" style="background-color: #12b42d">Get Schedule</button>
-            <a href="" class="btn btn-cancel">Cancel</a>
+            <button [disabled]="isScheduleButtonDisabled" (click)="getScheduleAI()" class="btn btn-submit me-2" style="background-color: #12b42d">Get Schedule</button>
+            <button (click)="navigateToDashboard()" class="btn btn-cancel me-2">Cancel</button>
           </div>
         </div>
       </div>

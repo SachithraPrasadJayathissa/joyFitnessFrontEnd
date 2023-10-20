@@ -69,7 +69,7 @@
       <td>{{ item.age }}</td>
       <td>
         <button class="btn btn-submit me-2"  data-bs-toggle="modal"
-                data-bs-target="#exampleModalCenter" (click)="updatePopup()">Update</button>
+                data-bs-target="#exampleModalCenter" (click)="updatePopup(item.nic)">Update</button>
         <button class="btn btn-cancel me-2" (click)="deleteMember(item.nic)">Delete</button>
       </td>
     </tr>

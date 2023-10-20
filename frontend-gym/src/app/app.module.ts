@@ -18,6 +18,9 @@ import { ManagetrainerComponent } from './views/pages/managetrainer/managetraine
 import { LoginComponent } from './views/pages/login/login.component';
 import {LoginService} from "./service/login.service";
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NavMemberComponent } from './views/pages/nav-member/nav-member.component';
+import { MemberDadhboardComponent } from './views/pages/member-dadhboard/member-dadhboard.component';
+import {MemberDashboardService} from "./service/member-dashboard.service";
 
 
 @NgModule({
@@ -31,6 +34,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         TrainerComponent,
         ManagetrainerComponent,
         LoginComponent,
+        NavMemberComponent,
+        MemberDadhboardComponent,
     ],
     imports: [
         BrowserModule,
@@ -40,7 +45,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
         HttpClientModule,
         NgbModule
     ],
-    providers: [TraineerService, MemberService, LoginService],
+    providers: [TraineerService, MemberService, LoginService,MemberDashboardService],
     bootstrap: [AppComponent]
 })
 export class AppModule {

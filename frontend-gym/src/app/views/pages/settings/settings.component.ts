@@ -13,9 +13,9 @@ export class SettingsComponent implements OnInit {
 
   data?: MemberModel[];
   modelRef: any;
-  member: MemberModel = {
-    nic: ''
-  };
+    member: MemberModel = {
+        nic: ''
+    };
 
   @ViewChild('updateMemberPopup') updateMemberPopup!: ElementRef;
   constructor(private memberService: MemberService, private modal: NgbModal) {
@@ -85,10 +85,18 @@ export class SettingsComponent implements OnInit {
         }
       });
   }
+    updatePopup(value: any): void {
+        this.modelRef = this.modal.open(this.updateMemberPopup, { centered: true });
 
-  updatePopup(){
-    this.modelRef = this.modal.open(this.updateMemberPopup, {centered: true})
-  }
+        const id=value;
+      this.memberService.getMember(id).subscribe({
+        next: (res) => {
+          console.log(res);
+        },
+      });
+
+    }
+
   closePopup(){
     this.modelRef.close();
   }

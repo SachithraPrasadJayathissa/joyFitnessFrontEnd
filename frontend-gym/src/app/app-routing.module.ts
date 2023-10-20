@@ -6,6 +6,8 @@ import {SettingsComponent} from "./views/pages/settings/settings.component";
 import {TrainerComponent} from "./views/pages/trainer/trainer.component";
 import {ManagetrainerComponent} from "./views/pages/managetrainer/managetrainer.component";
 import {LoginComponent} from "./views/pages/login/login.component";
+import {NavMemberComponent} from "./views/pages/nav-member/nav-member.component";
+import {MemberDadhboardComponent} from "./views/pages/member-dadhboard/member-dadhboard.component";
 
 const routes: Routes = [
   {
@@ -13,6 +15,17 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full'
   },
+
+  {
+    path: 'nav-member',
+    children: [
+      {
+        path: 'dashboard',
+        component: MemberDadhboardComponent,
+      },
+    ],
+  },
+
   {
     path: 'dashboard',
     component: DashboardComponent
