@@ -23,7 +23,7 @@ export class MemberDadhboardComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getWorkouts("amal");
+    this.getWorkouts(sessionStorage.getItem('username'));
   }
   getWorkouts(value: any): void {
     const username=value;
