@@ -10,14 +10,33 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
-  members: any = {};
+  // members: any = {};
+  public schedule_ex: any;
   data?: MemberModel[];
   modelRef: any;
-    member: MemberModel = {
-        nic: ''
-    };
+  member: MemberModel = {
+    nic: ''
+  };
+
+  members: MemberModel = {
+    name: '',
+    username: '',
+    password: '',
+    phone: '',
+    nic: '',
+    age: '',
+    gender: '',
+    height: '',
+    weight: '',
+    bmi: '',
+    workout_time: '',
+    workout_experience: '',
+    fitness_goal: '',
+    schedule: ''
+  };
 
   @ViewChild('updateMemberPopup') updateMemberPopup!: ElementRef;
+
   constructor(private memberService: MemberService, private modal: NgbModal) {
   }
 
@@ -35,9 +54,9 @@ export class SettingsComponent implements OnInit {
       });
   }
 
-  deleteMember(val:any): void {
+  deleteMember(val: any): void {
     const details = {
-     nic: val,
+      nic: val,
     };
 
     this.memberService.delete(details)
@@ -85,21 +104,83 @@ export class SettingsComponent implements OnInit {
         }
       });
   }
-    updatePopup(value: any): void {
-        this.modelRef = this.modal.open(this.updateMemberPopup, { centered: true });
 
-      const id=value;
-      this.memberService.getMember(id).subscribe({
-        next: (obj) => {
-          console.log(obj);
-          this.members = obj;
-          console.log(this.members)
+  updatePopup(value: any): void {
+    this.modelRef = this.modal.open(this.updateMemberPopup, {centered: true});
+
+    const id = value;
+    this.memberService.getMember(id).subscribe({
+      next: (obj) => {
+        console.log(obj);
+        this.members = obj;
+        console.log(this.members)
+      },
+    });
+
+  }
+
+  UpdateMember(): void {
+    const dataUpdate: any = {
+      phone: this.members.phone,
+      nic:this.members.nic,
+      age: this.members.age,
+      gender: this.members.gender,
+      height: this.members.height,
+      weight: this.members.weight,
+      bmi: this.members.bmi,
+      workout_time: this.members.workout_time,
+      workout_experience: this.members.workout_experience,
+      fitness_goal: this.members.fitness_goal,
+      schedule: this.members.schedule
+    };
+
+
+    console.log(dataUpdate.nic);
+    this.memberService.updateMember(dataUpdate)
+      .subscribe({
+        next: (res) => {
+          const successMessage = res['message_status'];
+          if (successMessage === 'Success') {
+            Swal.fire({
+              title: 'Good Job',
+              text: 'Success Added',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                location.reload();
+              }
+            });
+          } else {
+            Swal.fire({
+              title: 'Error',
+              text: 'User Already Existing',
+              icon: 'error',
+              confirmButtonText: 'OK'
+            }).then((result) => {
+              if (result.isConfirmed) {
+                location.reload();
+              }
+            });
+          }
         },
+        error: (e) => {
+          console.error(e);
+          Swal.fire({
+            title: 'Error',
+            text: 'An error occurred. Please try again later.',
+            icon: 'error',
+            confirmButtonText: 'OK'
+          }).then((result) => {
+            if (result.isConfirmed) {
+              location.reload();
+            }
+          });
+        }
       });
+  }
 
-    }
-
-  closePopup(){
+  closePopup() {
     this.modelRef.close();
   }
 }

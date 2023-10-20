@@ -35,7 +35,14 @@ export class MemberService {
     console.log(data);
     return this.http.get <MemberModel>(baseUrl+"member/getMember", { params: {id:data} });
   }
+  // update(data: any): Observable<any> {
+  //
+  //   return this.http.put<any>(baseUrl+"member/update", data);
+  // }
+  updateMember(data: any): Observable<any> {
 
+    return this.http.post(baseUrl+"member/update",data);
+  }
 
 
 }

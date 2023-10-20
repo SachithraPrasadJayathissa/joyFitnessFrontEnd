@@ -102,6 +102,7 @@
 
               <label>Phone</label>
               <input  id="phone" name="phone" [(ngModel)]="members.phone" required>
+              <input style="display: none" id="nic" name="nic" [(ngModel)]="members.nic">
 
               <label >Height</label>
               <input id="height" name="height" [(ngModel)]="members.height"required>
@@ -114,7 +115,6 @@
 
               <label>Fitness Goal</label>
               <select class="form-select"id="goal" name="goal" [(ngModel)]="members.fitness_goal" >
-                <option></option>
                 <option>General Health</option>
                 <option>Weight Gain</option>
                 <option>Muscle Gain</option>
@@ -127,12 +127,12 @@
               <input id="Workout_Experieance" name="Workout_Experieance"[(ngModel)]="members.workout_experience" required>
 
               <label>Workout Schedule</label>
-              <input id="Workout_Schedule" name="Workout_Schedule" required>
+              <input id="Workout_Schedule" name="Workout_Schedule" [(ngModel)]="members.schedule" required>
             </form>
           </div>
         </div>
         <br>
-        <button type="submit">Update</button>
+        <button type="submit" (click)="UpdateMember()">Update</button>
         <br>
         <button type="submit">Update Schedule</button>
       </form>

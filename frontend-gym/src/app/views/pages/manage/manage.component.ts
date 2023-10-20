@@ -57,6 +57,7 @@ public schedule_ex: any;
         };
 
         for (const key in data) {
+          console.log(data[key]);
             if (data[key] == null || data[key] === '') {
                 Swal.fire({
                     title: 'Error',

@@ -33,8 +33,7 @@ export class LoginComponent {
             sessionStorage.setItem('username' , res.username);
           }
 
-          if(res.role === 'ROLE_TRAINER'){
-
+          if (res.role === 'ROLE_TRAINER') {
             Swal.fire({
               title: 'Successful Login',
               text: 'Welcome Trainer!',
@@ -42,13 +41,25 @@ export class LoginComponent {
               confirmButtonText: 'OK'
             }).then((result) => {
               if (result.isConfirmed) {
-                this.router.navigate(['/dashboard']);
+                this.router.navigate(['/dashboard']).then(() => {
+                  location.reload();
+                });
               }
             });
-
           } else if(res.role === 'ROLE_MEMBER'){
-            this.router.navigate(['/nav-member/dashboard']);
-            console.log(res);
+            Swal.fire({
+              title: 'Successful Login',
+              text: 'Welcome Member!',
+              icon: 'success',
+              confirmButtonText: 'OK'
+            }).then((result) => {
+
+              if (result.isConfirmed) {
+                this.router.navigate(['/nav-member/dashboard']).then(() => {
+                  location.reload();
+                });
+              }
+            });
           }
 
         },
@@ -59,7 +70,7 @@ export class LoginComponent {
             icon: 'error',
             confirmButtonText: 'Try Again'
           }).then((result) => {
-            location.reload();
+            window.location.reload();
           });
         }
       });
