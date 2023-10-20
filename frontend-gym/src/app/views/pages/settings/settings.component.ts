@@ -88,7 +88,7 @@ export class SettingsComponent implements OnInit {
     updatePopup(value: any): void {
         this.modelRef = this.modal.open(this.updateMemberPopup, { centered: true });
 
-        const id=value;
+      const id=value;
       this.memberService.getMember(id).subscribe({
         next: (res) => {
           console.log(res);

@@ -30,6 +30,7 @@ export class LoginComponent {
           if(res.token !== ''){
             sessionStorage.setItem('jwt_token' , res.token);
             sessionStorage.setItem('user_role' , res.role);
+            sessionStorage.setItem('username' , res.username);
           }
 
           if(res.role === 'ROLE_TRAINER'){
@@ -40,7 +41,6 @@ export class LoginComponent {
               icon: 'success',
               confirmButtonText: 'OK'
             }).then((result) => {
-
               if (result.isConfirmed) {
                 this.router.navigate(['/dashboard']);
               }
@@ -48,6 +48,7 @@ export class LoginComponent {
 
           } else if(res.role === 'ROLE_MEMBER'){
             this.router.navigate(['/nav-member/dashboard']);
+            console.log(res);
           }
 
         },

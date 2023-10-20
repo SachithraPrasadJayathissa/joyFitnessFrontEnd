@@ -12,10 +12,6 @@ export class MemberDashboardService {
 
   getSchedule(data:any):Observable<any>{
     console.log(baseUrl+"member/getSchedule",data);
-    return this.http.get(baseUrl+"member/getSchedule",data);
+    return this.http.get <MemberModel>(baseUrl+"member/getSchedule", { params: {username:data} });
   }
-  // getSchedule(data:any):Observable<any>{
-  //   const headers = new HttpHeaders().set('Authorization', 'Bearer ');
-  //   return this.http.get<MemberModel>(baseUrl + "member/getSchedule", { headers: headers, params: {username: data}});
-  // }
 }

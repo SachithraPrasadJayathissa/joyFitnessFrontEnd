@@ -13,27 +13,31 @@ import {WorkoutsModels} from "../../../model/workouts.models";
 })
 export class MemberDadhboardComponent implements OnInit{
   data?: WorkoutsModels[];
-  modelRef: any;
-  workout: WorkoutsModels = {
+    workout: WorkoutsModels = {
     scheduleName: '',
     workouts:'',
-
   };
-  constructor(private MemberDashBoardService: MemberDashboardService, private modal: NgbModal) {
+  workouts: any[] = [];
+  constructor(private MemberDashBoardService: MemberDashboardService) {
 
   }
 
   ngOnInit(): void {
-   this.getWorkouts("amal")
+    this.getWorkouts("amal");
   }
-
   getWorkouts(value: any): void {
-    this.MemberDashBoardService.getSchedule(value).subscribe({
+    const username=value;
+    this.MemberDashBoardService.getSchedule(username).subscribe({
       next: (res) => {
         console.log(res);
+        this.workouts =res.data
+        console.log(this.workouts)
       },
     });
 
+  }
+  objectKeys(obj: Object) {
+    return Object.keys(obj);
   }
 
 }
