@@ -91,45 +91,43 @@
           <div class="form-container">
             <form action="" method="post">
               <label>Age</label>
-              <input type="text" id="age"required>
+              <input type="text" id="age" name="age" [(ngModel)]="members.age">
 
               <label>Gender</label>
-              <select class="form-select" id="gender">
+              <select class="form-select" id="gender" name="gender"[(ngModel)]="members.gender" >
                 <option></option>
                 <option>Male</option>
                 <option>Female</option>
               </select>
 
               <label>Phone</label>
-              <input  id="phone"required>
+              <input  id="phone" name="phone" [(ngModel)]="members.phone" required>
 
               <label >Height</label>
-              <input id="height"required>
+              <input id="height" name="height" [(ngModel)]="members.height"required>
 
               <label>Weight</label>
-              <input id="weight" required>
+              <input id="weight" name="weight" [(ngModel)]="members.weight" required>
 
               <label>BMI</label>
-              <input type="text" id="bmi"required>
+              <input type="text" id="bmi" name="bmi" [(ngModel)]="members.bmi" required>
 
               <label>Fitness Goal</label>
-              <select class="form-select" id="goal">
+              <select class="form-select"id="goal" name="goal" [(ngModel)]="members.fitness_goal" >
                 <option></option>
                 <option>General Health</option>
-                <option>#</option>
-                <option>#</option>
-                <option>#</option>
+                <option>Weight Gain</option>
+                <option>Muscle Gain</option>
+                <option>Weight Loss</option>
               </select>
-
-
               <label>Workout Time(Minutes)</label>
-              <input  id="workout_Time"required>
+              <input id="workout_Time" name="workout_Time" [(ngModel)]="members.workout_time" required>
 
               <label >Workout Experieance(Years)</label>
-              <input id="Workout_Experieance"required>
+              <input id="Workout_Experieance" name="Workout_Experieance"[(ngModel)]="members.workout_experience" required>
 
               <label>Workout Schedule</label>
-              <input id="Workout_Schedule" required>
+              <input id="Workout_Schedule" name="Workout_Schedule" required>
             </form>
           </div>
         </div>

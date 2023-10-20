@@ -25,4 +25,8 @@ export class TraineerService {
   delete(nic: any): Observable<any> {
     return this.http.delete(baseUrl+"trainer/delete", { body: nic });
   }
+
+  update(data: any): Observable<any> {
+    return this.http.put(baseUrl+"trainer/update", data);
+  }
 }

@@ -10,7 +10,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit {
-
+  members: any = {};
   data?: MemberModel[];
   modelRef: any;
     member: MemberModel = {
@@ -90,8 +90,10 @@ export class SettingsComponent implements OnInit {
 
       const id=value;
       this.memberService.getMember(id).subscribe({
-        next: (res) => {
-          console.log(res);
+        next: (obj) => {
+          console.log(obj);
+          this.members = obj;
+          console.log(this.members)
         },
       });
 
