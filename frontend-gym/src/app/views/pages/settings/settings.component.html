@@ -127,14 +127,14 @@
               <input id="Workout_Experieance" name="Workout_Experieance"[(ngModel)]="members.workout_experience" required>
 
               <label>Workout Schedule</label>
-              <input id="Workout_Schedule" name="Workout_Schedule" [(ngModel)]="members.schedule" required>
+              <input id="Workout_Schedule" value="{{schedule_ex}}" name="Workout_Schedule" [(ngModel)]="members.schedule" required>
             </form>
           </div>
         </div>
         <br>
         <button type="submit" (click)="UpdateMember()">Update</button>
         <br>
-        <button type="submit">Update Schedule</button>
+        <button type="submit" (click)="UpdateScheduleAI()">Update Schedule</button>
       </form>
     </div>
   </div>

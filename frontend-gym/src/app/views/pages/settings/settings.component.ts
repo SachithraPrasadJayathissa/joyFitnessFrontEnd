@@ -34,7 +34,7 @@ export class SettingsComponent implements OnInit {
     fitness_goal: '',
     schedule: ''
   };
-
+  isScheduleButtonDisabled = false;
   @ViewChild('updateMemberPopup') updateMemberPopup!: ElementRef;
 
   constructor(private memberService: MemberService, private modal: NgbModal) {
@@ -180,7 +180,47 @@ export class SettingsComponent implements OnInit {
       });
   }
 
+  showLoadingAlert() {
+    Swal.fire({
+      title: 'Loading...',
+      html: '<div class="spinner-border" role="status"><span class="sr-only">GENERATING A SCHEDULE...</span></div>',
+      showConfirmButton: false,
+      allowOutsideClick: false
+    });
+  }
+
+  closeAlert() {
+    Swal.close();
+  }
   closePopup() {
     this.modelRef.close();
+  }
+  UpdateScheduleAI(): void {
+    this.showLoadingAlert();
+    const needData = {
+      age: this.members.age,
+      gender: this.members.gender,
+      height: this.members.height,
+      weight: this.members.weight,
+      bmi: this.members.bmi,
+      workout_time: this.members.workout_time,
+      workout_experience: this.members.workout_experience,
+      fitness_goal: this.members.fitness_goal,
+    };
+    console.log(needData)
+    this.memberService.getSchedule(needData)
+      .subscribe({
+        next: (res) => {
+          console.log(res);
+          this.schedule_ex = res.scheduleValue;
+          this.closeAlert();
+          this.isScheduleButtonDisabled = true;
+        },
+        error: (err) => {
+          console.error(err);
+          this.closeAlert();
+        }
+      });
+
   }
 }
