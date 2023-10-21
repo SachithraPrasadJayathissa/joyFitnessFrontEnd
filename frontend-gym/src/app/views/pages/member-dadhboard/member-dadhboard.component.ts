@@ -5,6 +5,7 @@ import {MemberDashboardService} from "../../../service/member-dashboard.service"
 import Swal from "sweetalert2";
 import {TrainerModel} from "../../../model/trainer.model";
 import {WorkoutsModels} from "../../../model/workouts.models";
+import {LogoutService} from "../../../service/logout.service";
 
 @Component({
   selector: 'app-member-dadhboard',
@@ -18,7 +19,7 @@ export class MemberDadhboardComponent implements OnInit{
     workouts:'',
   };
   workouts: any[] = [];
-  constructor(private MemberDashBoardService: MemberDashboardService) {
+  constructor(private MemberDashBoardService: MemberDashboardService,private logoutService:LogoutService) {
 
   }
 
@@ -38,6 +39,22 @@ export class MemberDadhboardComponent implements OnInit{
   }
   objectKeys(obj: Object) {
     return Object.keys(obj);
+  }
+
+  logout() {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, logout!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.logoutService.logout();
+      }
+    })
   }
 
 }

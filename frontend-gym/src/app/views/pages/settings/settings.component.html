@@ -105,18 +105,16 @@
               <input style="display: none" id="nic" name="nic" [(ngModel)]="members.nic">
 
               <label >Height</label>
-              <input id="height" name="height" [(ngModel)]="members.height"required>
+              <input id="height" name="height" [(ngModel)]="members.height" (input)="calculateBMI()" required>
 
               <label>Weight</label>
-              <input id="weight" name="weight" [(ngModel)]="members.weight" required>
+              <input id="weight" name="weight" [(ngModel)]="members.weight"  (input)="calculateBMI()" required>
 
               <label>BMI</label>
               <input type="text" id="bmi" name="bmi" [(ngModel)]="members.bmi" required>
 
               <label>Fitness Goal</label>
               <select class="form-select"id="goal" name="goal" [(ngModel)]="members.fitness_goal" >
-                <option>General Health</option>
-                <option>Weight Gain</option>
                 <option>Muscle Gain</option>
                 <option>Weight Loss</option>
               </select>

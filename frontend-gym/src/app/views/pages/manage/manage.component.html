@@ -32,8 +32,6 @@
             <div class="form-group">
               <label>Fitness Goal</label>
               <select class="form-select" id="goal"[(ngModel)]="member.fitness_goal">
-                <option>General Health</option>
-                <option>Weight Gain</option>
                 <option>Muscle Gain</option>
                 <option>Weight Loss</option>
               </select>
@@ -91,13 +89,13 @@
           </div>
           <div class="col-lg-3 col-sm-6 col-12">
             <div class="form-group">
-              <label>Workout Time</label>
+              <label>Workout Time(min)</label>
               <input type="text" id="time" [(ngModel)]="member.workout_time">
             </div>
           </div>
           <div class="col-lg-3 col-sm-6 col-12">
             <div class="form-group">
-              <label>Workout Experieance</label>
+              <label>Workout Experience(years)</label>
               <input type="text" id="experiance" [(ngModel)]="member.workout_experience">
             </div>
           </div>
@@ -111,7 +109,7 @@
 
           <div class="col-lg-12">
             <button (click)="saveMember()" class="btn btn-submit me-2">Submit</button>
-            <button [disabled]="isScheduleButtonDisabled" (click)="getScheduleAI()" class="btn btn-submit me-2" style="background-color: #12b42d">Get Schedule</button>
+            <button [disabled]="isScheduleButtonDisabled" (click)="getScheduleAI()" class="btn btn-submit me-2" style="background-color: #0d8120">Get Schedule</button>
             <button (click)="navigateToDashboard()" class="btn btn-cancel me-2">Cancel</button>
           </div>
         </div>

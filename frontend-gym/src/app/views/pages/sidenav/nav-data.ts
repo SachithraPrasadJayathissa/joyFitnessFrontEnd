@@ -20,6 +20,7 @@ export const navbarData = [
     icon: 'far fa-address-card',
     label: 'Add Trainer'
   },
+
   {
     routeLink: 'managetrainer',
     icon: 'fas fa-user-cog',

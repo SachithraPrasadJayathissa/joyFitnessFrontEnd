@@ -17,7 +17,7 @@ export class DashboardService {
 
   countTrainer(): Observable<number> {
     const headers = new HttpHeaders().set('Authorization', 'Bearer ' + sessionStorage.getItem('jwt_token'));
-    return this.http.get<number>(baseUrl+"trainer/countTrainer");
+    return this.http.get<number>(baseUrl+"trainer/countTrainer",{headers});
   }
 
 }

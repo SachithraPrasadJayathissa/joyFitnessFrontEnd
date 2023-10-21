@@ -122,7 +122,7 @@ export class SettingsComponent implements OnInit {
   UpdateMember(): void {
     const dataUpdate: any = {
       phone: this.members.phone,
-      nic:this.members.nic,
+      nic: this.members.nic,
       age: this.members.age,
       gender: this.members.gender,
       height: this.members.height,
@@ -192,9 +192,11 @@ export class SettingsComponent implements OnInit {
   closeAlert() {
     Swal.close();
   }
+
   closePopup() {
     this.modelRef.close();
   }
+
   UpdateScheduleAI(): void {
     this.showLoadingAlert();
     const needData = {
@@ -207,7 +209,6 @@ export class SettingsComponent implements OnInit {
       workout_experience: this.members.workout_experience,
       fitness_goal: this.members.fitness_goal,
     };
-    console.log(needData)
     this.memberService.getSchedule(needData)
       .subscribe({
         next: (res) => {
@@ -222,5 +223,12 @@ export class SettingsComponent implements OnInit {
         }
       });
 
+  }
+
+  calculateBMI(): void {
+    if (this.members.height && this.members.weight) {
+      let heightInMeters = this.members.height / 100;
+      this.members.bmi = (this.members.weight / (heightInMeters ** 2)).toFixed(1);
+    }
   }
 }

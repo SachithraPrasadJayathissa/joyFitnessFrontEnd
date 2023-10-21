@@ -41,3 +41,7 @@ footer {
   text-align: center;
   padding: 1em;
 }
+
+.button-hover:hover i {
+  color: red;
+}

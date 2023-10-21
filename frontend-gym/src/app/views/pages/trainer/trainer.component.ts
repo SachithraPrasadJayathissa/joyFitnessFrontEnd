@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {TrainerModel} from "../../../model/trainer.model";
 import {TraineerService} from "../../../service/traineer.service";
 import Swal from "sweetalert2";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-trainer',
@@ -23,11 +24,11 @@ export class TrainerComponent {
   submitted = false;
 
 
-  constructor(private trainerService: TraineerService) {
+  constructor(private trainerService: TraineerService, private router: Router) {
   }
 
   saveTrainer(): void {
-    const details = {
+    const details:any = {
       name: this.trainer.name,
       username: this.trainer.username,
       password: this.trainer.password,
@@ -36,6 +37,17 @@ export class TrainerComponent {
       age: this.trainer.age
     };
 
+    for (const key in details) {
+      if (details[key] == null || details[key] === '') {
+        Swal.fire({
+          title: 'Error',
+          text: 'All fields are required. Please fill out all fields.',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+        return;
+      }
+    }
     this.trainerService.createTrainer(details)
       .subscribe({
         next: (res) => {
@@ -80,6 +92,9 @@ export class TrainerComponent {
           });
         }
       });
+  }
+  navigateToDashboard(): void {
+    this.router.navigate(['/dashboard']);
   }
 
 }
