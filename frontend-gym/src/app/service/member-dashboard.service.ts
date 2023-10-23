@@ -11,7 +11,7 @@ export class MemberDashboardService {
   constructor(private http: HttpClient) { }
 
   getSchedule(data:any):Observable<any>{
-    console.log(baseUrl+"member/getSchedule",data);
+    console.log(baseUrl+"member/getSchedule", { params: {username:data} });
     return this.http.get <MemberModel>(baseUrl+"member/getSchedule", { params: {username:data} });
   }
 }

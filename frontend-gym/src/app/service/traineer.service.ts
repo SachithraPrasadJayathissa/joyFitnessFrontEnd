@@ -14,17 +14,14 @@ export class TraineerService {
   constructor(private http: HttpClient) { }
 
   createTrainer(data : any): Observable<any>{
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + sessionStorage.getItem('jwt_token'));
-    return this.http.post(baseUrl+"trainer/add",data,{headers});
+    return this.http.post(baseUrl+"trainer/add",data);
   }
 
   getAll(): Observable<TrainerModel[]> {
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + sessionStorage.getItem('jwt_token'));
-    return this.http.get<TrainerModel[]>(baseUrl+"trainer",{headers});
+    return this.http.get<TrainerModel[]>(baseUrl+"trainer");
   }
 
   delete(nic: any): Observable<any> {
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + sessionStorage.getItem('jwt_token'));
     return this.http.delete(baseUrl+"trainer/delete", { body: nic });
   }
 

@@ -11,13 +11,11 @@ export class DashboardService {
   constructor(private http: HttpClient) { }
 
   countUsers(): Observable<number> {
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + sessionStorage.getItem('jwt_token'));
-    return this.http.get<number>(baseUrl+'member/countMembers', {headers});
+    return this.http.get<number>(baseUrl+'member/countMembers');
   }
 
   countTrainer(): Observable<number> {
-    const headers = new HttpHeaders().set('Authorization', 'Bearer ' + sessionStorage.getItem('jwt_token'));
-    return this.http.get<number>(baseUrl+"trainer/countTrainer",{headers});
+    return this.http.get<number>(baseUrl+"trainer/countTrainer");
   }
 
 }

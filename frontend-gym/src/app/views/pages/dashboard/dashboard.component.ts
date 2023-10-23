@@ -20,7 +20,7 @@ export class DashboardComponent implements OnInit{
   ngOnInit() {
     this.dashboardService.countUsers()
       .subscribe((count) => {
-      this.countMember = count;
+       this.countMember = count;
     }),
 
     this.dashboardService.countTrainer()

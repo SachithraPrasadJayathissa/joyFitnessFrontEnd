@@ -57,4 +57,5 @@ export class MemberDadhboardComponent implements OnInit{
     })
   }
 
+  protected readonly sessionStorage = sessionStorage;
 }
